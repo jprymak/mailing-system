@@ -1,10 +1,12 @@
+const {REACT_APP_API_KEY} = process.env;
+
 function request(url, method = "get", data = null) {
 
     const config = {
         method,
         headers: {
             "content-type": "application/json",
-            "Authorization": 'Bearer keyMYFRNAa7bk0YNB'
+            "Authorization": `Bearer ${REACT_APP_API_KEY}`
         }
 
     }
