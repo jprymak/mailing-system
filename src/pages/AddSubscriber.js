@@ -8,13 +8,14 @@ import {api} from "../api";
 function AddSubscriber(props) {
     const [hasError, setHasError] = useState(false);
 
-    const onSubmit = (data) =>{
+    const onSubmit = (data, e) =>{
         const {name, email} = data;
         api.post("https://api.airtable.com/v0/appfrBxpRB3whj4LA/Table%201", createSubscriberRecord(name, email))
         .catch(error=>{
             console.log(error);
             setHasError(true);
         })
+        e.target.reset();
     }
 
     return (

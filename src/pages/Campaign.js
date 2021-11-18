@@ -4,9 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { api } from "../api";
 import { createCampaign } from "../utils"
 import { sendEmail } from "../api/mail";
+import Button from "../components/Button";
 
 
-function Campaign(props) {
+function Campaign() {
     const [data, setData] = useState({ subject: "", content: "" });
     const [subscribers, setSubscribers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -25,6 +26,7 @@ function Campaign(props) {
 
     const handleSaveCampaign = () => {
         const { subject, content } = data;
+        console.log(data)
         api.post("https://api.airtable.com/v0/apptajSBIyxWDEYjS/Table%201", createCampaign(subject, content, "Draft"))
             .catch(error => {
                 console.log(error);
@@ -68,11 +70,14 @@ function Campaign(props) {
         e.preventDefault();
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="campaign-form" onSubmit={handleSubmit}>
+            <h2 className="campaign-header">New Campaign</h2>
             <input onChange={handleInputChange} value={data.subject} type="text" id="subject" name="subject" placeholder="Subject" />
-            <textarea onChange={handleInputChange} value={data.content} id="content" name="content"></textarea>
-            <button onClick={() => handleSaveCampaign()}>SAVE</button>
-            <button onClick={() => handleSendCampaign()}>SEND</button>
+            <textarea onChange={handleInputChange} value={data.content} id="content" name="content" ></textarea>
+            <div className="button-wrapper">
+            <Button handleOnClick={handleSaveCampaign} text="SAVE"/>
+            <Button handleOnClick={handleSendCampaign} text="SEND"/>
+            </div>
         </form>
     );
 }

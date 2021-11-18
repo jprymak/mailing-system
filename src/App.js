@@ -1,7 +1,6 @@
 import {
-  BrowserRouter,
   Routes,
-  Route
+  Route,
 } from "react-router-dom";
 
 
@@ -9,6 +8,7 @@ import {NavBar} from "./components/NavBar";
 import Subscribers from "./pages/Subscribers";
 import Campaign from "./pages/Campaign";
 import AddSubscriber from "./pages/AddSubscriber";
+import SubscriberInfo from "./pages/UserInfo"
 
 
 function App() {
@@ -16,9 +16,10 @@ function App() {
     <div className="App">
       <NavBar/>
       <Routes>
-        <Route path="/" element={<Subscribers/>}/>
-        <Route path="add-subscriber" element={<AddSubscriber/>}/>
-        <Route path="campaign" element={<Campaign/>}/>
+      <Route path={`/subscribers/:userId`} element={<SubscriberInfo/>}/>
+        <Route path="/subscribers" element={<Subscribers/>}/>
+        <Route path="/add-subscriber" element={<AddSubscriber/>}/>
+        <Route path="/campaign" element={<Campaign/>}/>
       </Routes>
     </div>
   );
