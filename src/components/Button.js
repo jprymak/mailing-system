@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Button(props) {
+function Button({text, handleOnClick}) {
     return (
-        <div>
-            
-        </div>
+        <button onClick={handleOnClick ? ()=>handleOnClick() : null} className="btn">
+            {text}
+        </button>
     );
 }
 
