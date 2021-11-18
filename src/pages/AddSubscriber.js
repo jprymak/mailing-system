@@ -12,7 +12,6 @@ function AddSubscriber(props) {
         const {name, email} = data;
         api.post("https://api.airtable.com/v0/appfrBxpRB3whj4LA/Table%201", createSubscriberRecord(name, email))
         .catch(error=>{
-            console.log(error);
             setHasError(true);
         })
         e.target.reset();

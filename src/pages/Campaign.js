@@ -26,7 +26,6 @@ function Campaign() {
 
     const handleSaveCampaign = () => {
         const { subject, content } = data;
-        console.log(data)
         api.post("https://api.airtable.com/v0/apptajSBIyxWDEYjS/Table%201", createCampaign(subject, content, "Draft"))
             .catch(error => {
                 console.log(error);
@@ -43,7 +42,6 @@ function Campaign() {
                 email: subscriber.fields.Email,
                 name: subscriber.fields.Name
             };
-            console.log(templateParams)
             sendEmail(templateParams).then((response) => {
                 api.post("https://api.airtable.com/v0/apptajSBIyxWDEYjS/Table%201", createCampaign(subject, content, "Sent")).then()
                     .catch(error => {
